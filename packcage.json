@@ -1,0 +1,12 @@
+{
+	"name": "IS",
+	"version": "0.1.0",
+	"author": "Sabin Marcu <sabinmarcu@gmail.com>",
+	"dependencies": {
+		"stitchw": ">=0.3.4",
+		"coffee-script": ">=1.2.0"
+	},
+	"devDependencies": {
+		"express": ">=2.5.0"
+	}
+}
