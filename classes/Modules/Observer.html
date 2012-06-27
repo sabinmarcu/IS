@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>IS Framework Documentation</title>
+  <link rel='stylesheet' href='../../assets/codo.css' type='text/css'>
+  <script src='../../assets/codo.js'></script>
+  <script src='../../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>Modules</span>
+    &raquo;
+    <span class='title'>Observer</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../../class_list.html'>Classes</a>
+      <a id='mixin_list_link' href='../../mixin_list.html'>Mixins</a>
+      <a id='method_list_link' href='../../method_list.html'>Methods</a>
+      <a id='file_list_link' href='../../file_list.html'>Files</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        Modules.Observer
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src/Modules/Observer.coffee</td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>The Observer class (or EventHandler) is a module that bestows the capability to triggevents, and subscribe to them to any given object. This practice is enspecially useful in JavaScript / CoffeeScript because if its event-driven nature. </p> 
+</div>
+<div class='tags'>
+  <h3>Version:</h3>
+  <ul class='version'>
+    <li>
+      v0.1
+    </li>
+  </ul>
+</div>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#delegateEvent-instance'>
+        - (void) <strong>delegateEvent</strong>(event, handler, object = window)
+      </a>
+    </span>
+    <span class='desc'>
+      Delegate an event to a given handler belonging to the given object.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#subscribe-instance'>
+        - (void) <strong>subscribe</strong>(event, handler)
+      </a>
+    </span>
+    <span class='desc'>
+      Subscribe a handler belonging to the current object to a given event of itself.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#publish-instance'>
+        - (void) <strong>publish</strong>(args...)
+      </a>
+    </span>
+    <span class='desc'>
+      Publish (trigger) to the event, also pushing data at the same time.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unsubscribe-instance'>
+        - (void) <strong>unsubscribe</strong>(event, id)
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#included-instance'>
+        - (void) <strong>included</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#extended-instance'>
+        - (void) <strong>extended</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+</ul>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='delegateEvent-instance'>
+      - (void) <strong>delegateEvent</strong>(event, handler, object = window)
+    </p>
+    <div class='docstring'>
+  <p>Delegate an event to a given handler belonging to the given object. <br> If no object is supplied, then the window object is used. </p> 
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The event to which the handler will be delegated (or subscribed)</span>
+    </li>
+    <li>
+      <span class='name'>handler</span>
+      <span class='type'>
+        (<tt>Function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The handler attached to the event.</span>
+    </li>
+    <li>
+      <span class='name'>object</span>
+      <span class='type'>
+        (<tt>Object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The object to which the handler belongs to (delegate data from that event).</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='subscribe-instance'>
+      - (void) <strong>subscribe</strong>(event, handler)
+    </p>
+    <div class='docstring'>
+  <p>Subscribe a handler belonging to the current object to a given event of itself. </p> 
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The event to which to delegate the handler.</span>
+    </li>
+    <li>
+      <span class='name'>handler</span>
+      <span class='type'>
+        (<tt>Function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The handler to attach to the event.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='publish-instance'>
+      - (void) <strong>publish</strong>(args...)
+    </p>
+    <div class='docstring'>
+  <p>Publish (trigger) to the event, also pushing data at the same time. </p> 
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>String</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The event to publish to (trigger)</span>
+    </li>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>Arguments...</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>Any data you wish to send through the channel to any handler attached to the event.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unsubscribe-instance'>
+      - (void) <strong>unsubscribe</strong>(event, id)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='included-instance'>
+      - (void) <strong>included</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='extended-instance'>
+      - (void) <strong>extended</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Wed Jun 27 2012 12:07:06 GMT+0300 (EEST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v0.9.0
+  (Node.js v0.6.15).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>
