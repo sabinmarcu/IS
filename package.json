@@ -11,6 +11,6 @@
 		"express": ">=2.5.0"
 	},
 	"scripts": {
-		"test": "jasmine-node --coffee --noColor ./spec"
+		"test": "node ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec"
 	}
 }
