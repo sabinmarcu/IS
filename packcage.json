@@ -5,8 +5,12 @@
 	"dependencies": {
 		"stitchw": ">=0.3.4",
 		"coffee-script": ">=1.2.0"
+		"jasmine-node": "*"
 	},
 	"devDependencies": {
 		"express": ">=2.5.0"
+	}
+	"scripts": {
+		"test": "jasmine-node -coffee -noColor ./spec"
 	}
 }
