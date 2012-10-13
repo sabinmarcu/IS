@@ -13,18 +13,23 @@ clone = (obj) ->
 # @version v0.1
 class Obiect
 
-	@clone: () -> (@proxy @include, (@proxy @extend, ->)(@))(@::)
+	@clone: (obj = @)-> debugger ;(Obiect.proxy Obiect.include, (Obiect.proxy Obiect.extend, ->)(obj))(obj::)
 
-	@extend: (obj) ->
+	@extend: (obj, into = @) ->
 		obj = clone obj
-		@[k] = value for k, value of obj when not ((k in _excludes) or (obj._excludes? and k in obj._excludes))
-		obj.extended?.call(@)
+		for k, value of obj
+			if not ((k in _excludes) or (obj._excludes? and k in obj._excludes))
+				if into[k]?
+					into.super ?= {}
+					into.super[k] = into[k]
+			into[k] = value
+		obj.extended?.call(into)
 		this
 
-	@include: (obj) ->
+	@include: (obj, into = @) ->
 		obj = clone obj
-		@::[key] = value for key, value of obj
-		obj.included?.call(@)
+		into::[key] = value for key, value of obj
+		obj.included?.call(into)
 		this
 
 	@proxy: () ->
@@ -44,7 +49,7 @@ class Obiect
 	extended = ->
 	included = ->
 
-	@include 
+	@include
 		proxy: @proxy
 
 module.exports = Obiect

@@ -1,6 +1,6 @@
 IS = require "../IS"
 obj = IS.Object
-obj.extend IS.Modules.ORM
+obj.extend IS.Modules.ORM()
 
 _count = (json) ->
 	nr = 0
@@ -94,7 +94,7 @@ describe "ORM Testing", ->
 		b.prop.set false
 		c.prop.set true
 
-		(expect (o.get prop: true).length).toBe 2
+		(expect (o.get prop:true).length).toBe 2
 		(expect o.get prop:true).toContain a
 		(expect o.get prop:true).not.toContain b
 		(expect o.get prop:true).toContain c
@@ -154,3 +154,22 @@ describe "ORM Testing", ->
 		results = o.get prop2: {"$contains": 1}
 		(expect results).toContain a
 		(expect results).toContain c
+
+	it "Should retrieve items between two delimiters", ->
+		o = obj.clone()
+
+		o.addProp("prop")
+
+		a = o.reuse()
+		b = o.reuse()
+		c = o.reuse()
+		d = o.reuse()
+
+
+		a.prop.set 1
+		b.prop.set 2
+		c.prop.set 3
+		d.prop.set 4
+
+		(expect _count o.get prop: {"$gt": 1, "$lt": 4}).toBe 2
+		(expect o.get prop: {"$gt": 2, "$lt": 4}).toBe c
