@@ -1,6 +1,6 @@
 {
 	"name": "isf",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"author": "Sabin Marcu <sabinmarcu@gmail.com>",
 	"dependencies": {
 		"stitchw": ">=0.3.4",
