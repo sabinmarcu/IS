@@ -1,22 +1,23 @@
 {
-	"name": "isf",
-	"version": "0.1.5",
-	"author": "Sabin Marcu <sabinmarcu@gmail.com>",
-	"dependencies": {
-		"stitchw": ">=0.3.4",
-		"coffee-script": ">=1.2.0",
-		"jasmine-node": "*",
-		"express": ">=2.5.0",
-		"commander": "*"
+	"name" :  "isf",
+	"version" :  "0.1.6",
+	"author" :  "Sabin Marcu <sabinmarcu@gmail.com>",
+	"dependencies" :  {
+		"stitchw" :  ">=0.3.4",
+		"coffee-script" :  ">=1.2.0",
+		"jasmine-node" :  "*",
+		"express" :  ">=2.5.0",
+		"commander" :  "*"
 	},
-	"devDependencies": {
-		"mongoose": "*",
-		"cdir": "*"
+	"devDependencies" :  {
+		"mongoose" :  "*",
+		"cdir" :  "*"
 	},
-	"scripts": {
-		"test": "npm run-script compile && npm run-script run-tests",
-		"compile": "node ./server.js --compile lib/application.js",
-		"run-tests": "node --debug ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
-		"run-tests-brk": "node --debug-brk ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec"
-	}
+	"scripts" :  {
+		"test" :  "npm run-script compile && npm run-script run-tests",
+		"compile" :  "node ./server.js --compile lib/application.js",
+		"run-tests" :  "node --debug ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
+		"run-tests-brk" :  "node --debug-brk ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec"
+	},
+	"main" :  "lib/application.js"
 }
