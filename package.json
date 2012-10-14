@@ -17,7 +17,8 @@
 		"test" :  "npm run-script compile && npm run-script run-tests",
 		"compile" :  "node ./server.js --compile lib/application.js",
 		"run-tests" :  "node --debug ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
-		"run-tests-brk" :  "node --debug-brk ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec"
+		"run-tests-brk" :  "node --debug-brk ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
+		"run_docs" :  "codo --title 'ISF Documentation' -o docs"
 	},
 	"main" :  "lib/application.js"
 }

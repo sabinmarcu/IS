@@ -2,14 +2,14 @@
 class Variable extends require "Object"
 
 	# A shorthand to distribute variables. Spawn will be much easier used than `reuse`
-	@spawn = -> 
+	@spawn = ->
 		x = new @
 		x._value = null
 		x
 
 	# Getter function
 	get: () ->
-		return @_value;
+		return @_value
 
 	# Setter function
 	# @param [Object] value The value to be saved

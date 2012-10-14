@@ -3,7 +3,7 @@ Modules = {}
 V = require "Variable"
 # The ORM Module extends the object intended with ActiveReccords-like capabilities
 # @mixin
-class Modules.ORM 
+class Modules.ORM
 
 	_identifier: "BasicORM"
 	_reccords: {}
@@ -14,21 +14,21 @@ class Modules.ORM
 	# A shorthand for retrieving an object via its ID, symlink (organic ID) or property criteria.
 	# @param [String] which ID - the default ID created by the ORM to identify unique reccords
 	# @option which [String] ID - the organic ID given by the application / user / developer
-	# @option which [Object] An object containing matchers to retrieve the object (passed to the {#getAdv} fnction)
+	# @option which [Obiect] An object containing matchers to retrieve the object (passed to the {#getAdv} fnction)
 	# @note Only properties added via the ORM can be matched
 	get: (which) ->
 		if typeof which is "object" then return @getAdv which
 		return @_symlinks[which] or @_reccords[which] or null
 
 	# Retrieves an object via property criteria
-	# @param [Object] what The object containing all of the matchers
+	# @param [Obiect] what The object containing all of the matchers
 	# @note Any first level item may refer to an object containing a modifier ($gt, $lt, $gte, $lte, $contains)
-	# @return [Object] The reccord requested or an array of reccords matching the given criteria.
+	# @return [Obiect] The reccord requested or an array of reccords matching the given criteria.
 	# @example How to find an object
 	# 		ORM.getAdv Username: "Xulescu", Password: sha256("password", salt)
 	# @example How to find an object using modifiers
 	# 		ORM.getAdv Username: "Xulescu", AuthLevel: { $gte: 5, $lte: 8 }
-	# 	
+	# 
 	getAdv: (what) ->
 		results = []
 
@@ -38,7 +38,7 @@ class Modules.ORM
 				if not rec[k]?
 					break
 				if (typeof v) is "object"
-					for mod, val of v 
+					for mod, val of v
 						modfinal = true
 						switch mod
 							when "$gt"
@@ -63,7 +63,7 @@ class Modules.ORM
 									modfinal = false
 									break
 								modfinal = false
-								for value in recs 
+								for value in recs
 									if value is val
 										modfinal = true
 										break
@@ -73,8 +73,8 @@ class Modules.ORM
 				else break
 			if final then results.push rec
 
-		check rec for key, rec of @_reccords			
-		check rec for key, rec of @_symlinks	
+		check rec for key, rec of @_reccords		
+		check rec for key, rec of @_symlinks
 
 		if results.length is 0 then return null
 		if results.length is 1 then return results[0]
@@ -84,15 +84,15 @@ class Modules.ORM
 	# @todo Remove symlink if reccord is found first, and remove reccord if symlink is found first
 	# @todo Implement removing via object queries
 	# @param which [String] The id of the reccord to remove
-	delete: (which) -> 
+	delete: (which) ->
 		@_reccords[which] ?= null
 		@_symlinks[which] ?= null
 
 	# Create a new reccord
 	# @param id [String] The id of the new reccord (will be stored as a symlink, as the reccord will still have its own uuid)
-	# @param args [Object] Optional arguments to be passed and processed by the reccords' init function (or embedded by default into the reccord)
-	# @return [Object] The reccord recently created 
-	create:  (id, args) -> 
+	# @param args [Obiect] Optional arguments to be passed and processed by the reccords' init function (or embedded by default into the reccord)
+	# @return [Obiect] The reccord recently created
+	create:  (id, args) ->
 		@_reccords ?= {}
 
 		args ?= {}
@@ -117,35 +117,35 @@ class Modules.ORM
 	# The requested reccord is firstly searched and, if found, retrieved.
 	# If the reccord is not found, it is created, taking the second parameter as arguments for the creation function.
 	# @param [String] which The reccord to retrieve
-	# @param [Object] args The arguments to pass to the construction {#create} function.
+	# @param [Obiect] args The arguments to pass to the construction {#create} function.
 	# @note The match argument is the same as in the {#get} function
-	reuse: (which, args) -> 
+	reuse: (which, args) ->
 		args ?= {}
 		rez = @get(which)
 		if rez? then return rez
-		return @create(which, args) 
-		
+		return @create(which, args)
+	
 	# Add a property to all reccords (both present and future)
 	# @param [String] prop The property's name
 	# @note The properties added are all of class Variable
 	# @see Variable
 	addProp: (prop) ->
 		@_props.push prop
-		for key, rec of @_reccords 
+		for key, rec of @_reccords
 			rec[prop] ?= V.spawn()
 
 	# Remove a property from all reccords (both present and future)
 	# @param [String] prop The property's name
 	removeProp: (prop) ->
-		for key, rec of @_reccords 
+		for key, rec of @_reccords
 			rec[prop] ?= null
 		for p, k in @_props
 			if p is prop then return @_props.splice k, 1
 
-	# Auxiliary class to integrate with {Object}'s {Object#extend} and  {Object#include} functions which trigger on the given events.
+	# Auxiliary class to integrate with {Obiect}'s {Obiect#extend} and  {Obiect#include} functions which trigger on the given events.
 	extended: ->
 		@_excludes = [
-			"_fn" 
+			"_fn"
 			"_uuid"
 			"_id"
 		]
@@ -164,20 +164,20 @@ class Modules.ORM
 				@parent.remove @id
 		}
 
-		
+	
 module.exports = (addon) ->
 	if IS.Addons? and IS.Addons.ORM? and IS.Addons.ORM[addon]
 		x = (require "Object").clone Modules.ORM
 		(require "Object").extend IS.Addons.ORM[addon], x
-	else if addon? 
+	else if addon?
 		test = [ "reuse", "addProp", "removeProp", "get", "create", "delete" ]
 		valid = true
 		valid = false for item in test when not addon[item]?
-		if valid 
+		if valid
 			x = (require "Object").clone Modules.ORM::
 			(require "Object").extend addon, x
 	if x? then return x
 	else return Modules.ORM::
-  
-		
+ 
+	
 

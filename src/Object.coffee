@@ -22,7 +22,7 @@ class Obiect
 				if into[k]?
 					into.super ?= {}
 					into.super[k] = into[k]
-			into[k] = value
+				into[k] = value
 		obj.extended?.call(into)
 		this
 
