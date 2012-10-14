@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>IS Framework Documentation</title>
+  <meta charset='UTF-8'>
+  <title>ISF Documentation</title>
   <link rel='stylesheet' href='../../assets/codo.css' type='text/css'>
   <script src='../../assets/codo.js'></script>
   <script src='../../assets/search_data.js'></script>
@@ -24,9 +25,9 @@
     </nav>
     <div id='search'>
       <a id='class_list_link' href='../../class_list.html'>Classes</a>
-      <a id='mixin_list_link' href='../../mixin_list.html'>Mixins</a>
-      <a id='method_list_link' href='../../method_list.html'>Methods</a>
       <a id='file_list_link' href='../../file_list.html'>Files</a>
+      <a id='method_list_link' href='../../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../../extra_list.html'>Extras</a>
     </div>
   </div>
   <iframe id='search_frame'></iframe>
@@ -66,12 +67,16 @@
         Mixin list
       </li>
       <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
         <span>Ctrl-M</span>
         Method list
       </li>
       <li>
-        <span>Ctrl-F</span>
-        File list
+        <span>Ctrl-E</span>
+        Extras list
       </li>
     </ul>
     <p>
@@ -111,7 +116,7 @@
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>The ORM Module extends the object intended with ActiveReccords-like capabilities </p> 
+  <p>The ORM Module extends the object intended with ActiveReccords-like capabilities</p>
 </div>
 <div class='tags'>
 </div>
@@ -130,7 +135,7 @@
   <li>
     <span class='signature'>
       <a href='#getAdv-instance'>
-        - (Object) <strong>getAdv</strong>(what)
+        - (Obiect) <strong>getAdv</strong>(what)
       </a>
     </span>
     <span class='desc'>
@@ -150,7 +155,7 @@
   <li>
     <span class='signature'>
       <a href='#create-instance'>
-        - (Object) <strong>create</strong>(id, args)
+        - (Obiect) <strong>create</strong>(id, args)
       </a>
     </span>
     <span class='desc'>
@@ -194,7 +199,7 @@
       </a>
     </span>
     <span class='desc'>
-      Auxiliary class to integrate with {Object}'s {Object#extend} and {Object#include} functions which trigger on the given events.
+      Auxiliary class to integrate with <a href='../../classes/Obiect.html'>Obiect</a>&#39;s {Obiect#extend} and {Obiect#include} functions which trigger on the given events.
     </span>
   </li>
 </ul>
@@ -209,7 +214,7 @@
     <strong>Note:</strong>
     Only properties added via the ORM can be matched
   </div>
-  <p>A shorthand for retrieving an object via its ID, symlink (organic ID) or property criteria. </p> 
+  <p>A shorthand for retrieving an object via its ID, symlink (organic ID) or property criteria.</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -234,12 +239,12 @@
         (<tt>String</tt>)
       </span>
       &mdash;
-      <span class='desc'>- the organic ID given by the application / user / developer</span>
+      <span class='desc'><li>the organic ID given by the application / user / developer</li> </span>
     </li>
     <li>
       <span class='name'>An</span>
       <span class='type'>
-        (<tt>Object</tt>)
+        (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       </span>
       &mdash;
       <span class='desc'>object containing matchers to retrieve the object (passed to the <a href='../../classes/Modules/ORM.html#getAdv-instance'>#getAdv</a> fnction)</span>
@@ -249,14 +254,14 @@
   </div>
   <div class='method_details'>
     <p class='signature' id='getAdv-instance'>
-      - (Object) <strong>getAdv</strong>(what)
+      - (Obiect) <strong>getAdv</strong>(what)
     </p>
     <div class='docstring'>
   <div class='note'>
     <strong>Note:</strong>
     Any first level item may refer to an object containing a modifier ($gt, $lt, $gte, $lte, $contains)
   </div>
-  <p>Retrieves an object via property criteria </p> 
+  <p>Retrieves an object via property criteria</p>
   <div class='examples'>
     <h3>Examples:</h3>
     <h4>
@@ -275,7 +280,7 @@
     <li>
       <span class='name'>what</span>
       <span class='type'>
-        (<tt>Object</tt>)
+        (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       </span>
       &mdash;
       <span class='desc'>The object containing all of the matchers</span>
@@ -284,9 +289,8 @@
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
-      <span class='type'>
-        (<tt>Object</tt>)
-      </span>
+      <span class='type'></span>
+      (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       &mdash;
       <span class='desc'>The reccord requested or an array of reccords matching the given criteria.</span>
     </li>
@@ -306,7 +310,7 @@
     <strong>TODO:</strong>
     Implement removing via object queries
   </div>
-  <p>Delete a reccord (either from the classic or symlinks) </p> 
+  <p>Delete a reccord (either from the classic or symlinks)</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -324,10 +328,10 @@
   </div>
   <div class='method_details'>
     <p class='signature' id='create-instance'>
-      - (Object) <strong>create</strong>(id, args)
+      - (Obiect) <strong>create</strong>(id, args)
     </p>
     <div class='docstring'>
-  <p>Create a new reccord </p> 
+  <p>Create a new reccord</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -343,20 +347,19 @@
     <li>
       <span class='name'>args</span>
       <span class='type'>
-        (<tt>Object</tt>)
+        (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       </span>
       &mdash;
-      <span class='desc'>Optional arguments to be passed and processed by the reccords' init function (or embedded by default into the reccord)</span>
+      <span class='desc'>Optional arguments to be passed and processed by the reccords&#39; init function (or embedded by default into the reccord)</span>
     </li>
   </ul>
   <h3>Returns:</h3>
   <ul class='return'>
     <li>
-      <span class='type'>
-        (<tt>Object</tt>)
-      </span>
+      <span class='type'></span>
+      (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       &mdash;
-      <span class='desc'>The reccord recently created </span>
+      <span class='desc'>The reccord recently created</span>
     </li>
   </ul>
 </div>
@@ -370,7 +373,7 @@
     <strong>Note:</strong>
     The match argument is the same as in the <a href='../../classes/Modules/ORM.html#get-instance'>#get</a> function
   </div>
-  <p>A shorthand for retrieving reccords. The requested reccord is firstly searched and, if found, retrieved. If the reccord is not found, it is created, taking the second parameter as arguments for the creation function. </p> 
+  <p>A shorthand for retrieving reccords.<br />The requested reccord is firstly searched and, if found, retrieved.<br />If the reccord is not found, it is created, taking the second parameter as arguments for the creation function.</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -386,7 +389,7 @@
     <li>
       <span class='name'>args</span>
       <span class='type'>
-        (<tt>Object</tt>)
+        (<tt><a href='../../classes/Obiect.html'>Obiect</a></tt>)
       </span>
       &mdash;
       <span class='desc'>The arguments to pass to the construction <a href='../../classes/Modules/ORM.html#create-instance'>#create</a> function.</span>
@@ -403,7 +406,7 @@
     <strong>Note:</strong>
     The properties added are all of class Variable
   </div>
-  <p>Add a property to all reccords (both present and future) </p> 
+  <p>Add a property to all reccords (both present and future)</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -414,7 +417,7 @@
         (<tt>String</tt>)
       </span>
       &mdash;
-      <span class='desc'>The property's name</span>
+      <span class='desc'>The property&#39;s name</span>
     </li>
   </ul>
   <h3>See also:</h3>
@@ -430,7 +433,7 @@
       - (void) <strong>removeProp</strong>(prop)
     </p>
     <div class='docstring'>
-  <p>Remove a property from all reccords (both present and future) </p> 
+  <p>Remove a property from all reccords (both present and future)</p>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -441,7 +444,7 @@
         (<tt>String</tt>)
       </span>
       &mdash;
-      <span class='desc'>The property's name</span>
+      <span class='desc'>The property&#39;s name</span>
     </li>
   </ul>
 </div>
@@ -451,7 +454,7 @@
       - (void) <strong>extended</strong>()
     </p>
     <div class='docstring'>
-  <p>Auxiliary class to integrate with {Object}&#39;s {Object#extend} and  {Object#include} functions which trigger on the given events. </p> 
+  <p>Auxiliary class to integrate with <a href='../../classes/Obiect.html'>Obiect</a>&#39;s {Obiect#extend} and  {Obiect#include} functions which trigger on the given events.</p>
 </div>
 <div class='tags'>
 </div>
@@ -460,11 +463,11 @@
     </div>
     <div id='footer'>
   Generated on
-  Wed Jun 27 2012 12:07:06 GMT+0300 (EEST)
+  Sun Oct 14 2012 17:42:46 GMT+0000 (UTC)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v0.9.0
-  (Node.js v0.6.15).
+  v1.4.2
+  (Node.js v0.6.12).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
   &#10034;

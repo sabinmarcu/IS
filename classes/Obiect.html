@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>IS Framework Documentation</title>
+  <meta charset='UTF-8'>
+  <title>ISF Documentation</title>
   <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
   <script src='../assets/codo.js'></script>
   <script src='../assets/search_data.js'></script>
@@ -22,9 +23,9 @@
     </nav>
     <div id='search'>
       <a id='class_list_link' href='../class_list.html'>Classes</a>
-      <a id='mixin_list_link' href='../mixin_list.html'>Mixins</a>
-      <a id='method_list_link' href='../method_list.html'>Methods</a>
       <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
     </div>
   </div>
   <iframe id='search_frame'></iframe>
@@ -64,12 +65,16 @@
         Mixin list
       </li>
       <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
         <span>Ctrl-M</span>
         Method list
       </li>
       <li>
-        <span>Ctrl-F</span>
-        File list
+        <span>Ctrl-E</span>
+        Extras list
       </li>
     </ul>
     <p>
@@ -109,7 +114,7 @@
       </table>
       <h2>Overview</h2>
       <div class='docstring'>
-  <p>Barebone Object that is to be augmented with modules  </p> 
+  <p>Barebone Object that is to be augmented with modules </p>
 </div>
 <div class='tags'>
   <h3>Author:</h3>
@@ -130,7 +135,7 @@
   <li>
     <span class='signature'>
       <a href='#clone-class'>
-        + (void) <strong>clone</strong>()
+        + (void) <strong>clone</strong>(obj = @undefined)
       </a>
     </span>
     <span class='desc'>
@@ -140,7 +145,7 @@
   <li>
     <span class='signature'>
       <a href='#extend-class'>
-        + (void) <strong>extend</strong>(obj)
+        + (void) <strong>extend</strong>(obj, into = @undefined)
       </a>
     </span>
     <span class='desc'>
@@ -150,7 +155,7 @@
   <li>
     <span class='signature'>
       <a href='#include-class'>
-        + (void) <strong>include</strong>(obj)
+        + (void) <strong>include</strong>(obj, into = @undefined)
       </a>
     </span>
     <span class='desc'>
@@ -182,21 +187,21 @@
       <div class='methods'>
   <div class='method_details'>
     <p class='signature' id='clone-class'>
-      + (void) <strong>clone</strong>()
+      + (void) <strong>clone</strong>(obj = @undefined)
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='extend-class'>
-      + (void) <strong>extend</strong>(obj)
+      + (void) <strong>extend</strong>(obj, into = @undefined)
     </p>
     <div class='tags'>
 </div>
   </div>
   <div class='method_details'>
     <p class='signature' id='include-class'>
-      + (void) <strong>include</strong>(obj)
+      + (void) <strong>include</strong>(obj, into = @undefined)
     </p>
     <div class='tags'>
 </div>
@@ -219,11 +224,11 @@
     </div>
     <div id='footer'>
   Generated on
-  Wed Jun 27 2012 12:07:06 GMT+0300 (EEST)
+  Sun Oct 14 2012 17:42:46 GMT+0000 (UTC)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v0.9.0
-  (Node.js v0.6.15).
+  v1.4.2
+  (Node.js v0.6.12).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
   &#10034;
