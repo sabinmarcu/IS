@@ -11,8 +11,4 @@ describe "ORM Mongo", ->
 
 		(expect inst._identifier).toBe "Mongo"
 
-	it "Should check for Mongoose driver", ->
-
-		mongo.create()
-		
 

@@ -40,26 +40,49 @@ describe "Error Reporter", ->
 
 			@extend IS.ErrorReporter
 
-			error0 = item2.generate 0
-			error1 = item2.generate 1
-			error2 = item2.generate 2
-			error3 = item2.generate 3
-			error4 = item2.generate 4
-			error5 = item2.generate 5
+		error0 = item2.generate 0
+		error1 = item2.generate 1
+		error2 = item2.generate 2
+		error3 = item2.generate 3
+		error4 = item2.generate 4
+		error5 = item2.generate 5
 
-			(expect error0.name).toBe "Unknown Error"
-			(expect error1.name).toBe "Penis"
-			(expect error2.name).toBe "Penis"
-			(expect error3.name).toBe "Penis"
-			(expect error4.name).toBe "Vagina"
-			(expect error5.name).toBe "Vagina"
+		(expect error0.name).toBe "Unknown Error"
+		(expect error1.name).toBe "Penis"
+		(expect error2.name).toBe "Penis"
+		(expect error3.name).toBe "Penis"
+		(expect error4.name).toBe "Vagina"
+		(expect error5.name).toBe "Vagina"
 
-			(expect error0.message).toBe "An unknown error has occurred"
-			(expect error1.message).toBe "No more Viagra"
-			(expect error2.message).toBe "Need potassium"
-			(expect error3.message).toBe "No banana for you"
-			(expect error4.message).toBe "Need a dildo"
-			(expect error5.message).toBe "No more wine"
+		(expect error0.message).toBe "An unknown error has occurred"
+		(expect error1.message).toBe "No more Viagra"
+		(expect error2.message).toBe "Need potassium"
+		(expect error3.message).toBe "No banana for you"
+		(expect error4.message).toBe "Need a dildo"
+		(expect error5.message).toBe "No more wine"
 
-			(expect ( item2.generate 3, "Stuff is fucked up!" ).message).toBe "No banana for you - Extra Data : Stuff is fucked up!"
+		(expect ( item2.generate 3, "Stuff is fucked up!" ).message).toBe "No banana for you - Extra Data : Stuff is fucked up!"
 
+	it "Should return correct texts", ->
+		class item2 extends obj
+
+			@errorGroupMap : [1, 1, 1, 2, 2]
+			@errorGroups   : [ "Penis", "Vagina" ]
+			@errorMessages : [ "No more Viagra", "Need potassium", "No banana for you", "Need a dildo", "No more wine" ]
+
+			@extend IS.ErrorReporter
+
+		error0 = item2.generate 0
+		error1 = item2.generate 1
+		error2 = item2.generate 2
+		error3 = item2.generate 3
+		error4 = item2.generate 4
+		error5 = item2.generate 5
+
+
+		(expect do error0.toString).toBe "[Unknown Error] An unknown error has occurred |0|"
+		(expect do error1.toString).toBe "[Penis] No more Viagra |1|"
+		(expect do error2.toString).toBe "[Penis] Need potassium |2|"
+		(expect do error3.toString).toBe "[Penis] No banana for you |3|"
+		(expect do error4.toString).toBe "[Vagina] Need a dildo |4|"
+		(expect do error5.toString).toBe "[Vagina] No more wine |5|"

@@ -33,7 +33,9 @@ class Bootstrap
 					"""
 					fs.writeFile location, content, (err) ->
 						if err then console.log "Error encountered at writing compiled file (location : #{location}: #{err.message}"
-						else console.log "Compiled to #{location}"
+						else 
+							console.log "Compiled to #{location}"
+							root._ISRES = true
 					callback(content) if callback?
 		if not watch?	then action()
 		else
@@ -104,3 +106,5 @@ program.parse process.argv
 if program.compile then	Bootstrap.compile()
 else if program.specs then Bootstrap.specs()
 else Bootstrap.server()
+
+root._ISRES = false

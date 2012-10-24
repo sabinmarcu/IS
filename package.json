@@ -7,7 +7,8 @@
 		"coffee-script" :  ">=1.2.0",
 		"jasmine-node" :  "*",
 		"express" :  ">=2.5.0",
-		"commander" :  "*"
+		"commander" :  "*",
+		"codo" :  "*"
 	},
 	"devDependencies" :  {
 		"mongoose" :  "*",
@@ -16,9 +17,8 @@
 	"scripts" :  {
 		"test" :  "npm run-script compile && npm run-script run-tests",
 		"compile" :  "node ./server.js --compile lib/application.js",
-		"run-tests" :  "node --debug ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
-		"run-tests-brk" :  "node --debug-brk ./node_modules/jasmine-node/lib/jasmine-node/cli --coffee --noColor ./spec",
-		"run_docs" :  "codo --title 'ISF Documentation' -o docs"
+		"run-tests" :  "node ./node_modules/.bin/jasmine-node --coffee --noColor ./spec",
+		"run_docs" :  "./node_modules/.bin/codo --title 'ISF Documentation' -o docs"
 	},
 	"main" :  "lib/application.js"
 }
