@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset='UTF-8'>
-  <title>ISF Documentation</title>
+  <title>&#39;ISF Documentation&#39;</title>
   <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
   <script src='../assets/codo.js'></script>
   <script src='../assets/search_data.js'></script>
@@ -11,6 +11,8 @@
     <div id='base' data-path='../'></div>
 <div id='header'>
   <div id='menu'>
+    <a href='../README.md.html' title='Codo'>Codo</a>
+    &raquo;
     <a href='../class_index.html' title='Index'>Index</a>
     &raquo;
     <span class='title'>ErrorReporter</span>
@@ -123,7 +125,7 @@
   <li>
     <span class='signature'>
       <a href='#wrapCustomError-class'>
-        + (void) <strong>wrapCustomError</strong>(error)
+        + (String) <strong>wrapCustomError</strong>(error)
       </a>
     </span>
     <span class='desc'>
@@ -153,12 +155,23 @@
       Generates the error based on factory items
     </span>
   </li>
+  <li>
+    <span class='signature'>
+      <a href='#toString-instance'>
+        - (String) <strong>toString</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Transforms the error message into a pretty text
+    </span>
+  </li>
 </ul>
       <h2>Class Method Details</h2>
       <div class='methods'>
   <div class='method_details'>
     <p class='signature' id='wrapCustomError-class'>
-      + (void) <strong>wrapCustomError</strong>(error)
+      + (String) <strong>wrapCustomError</strong>(error)
     </p>
     <div class='docstring'>
   <p>A function that would format the message of a previous error that needs to be included into the current one :)</p>
@@ -175,6 +188,15 @@
       <span class='desc'>The error to be formatted</span>
     </li>
   </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>String</tt>)
+      &mdash;
+      <span class='desc'>The error string of the converted error object</span>
+    </li>
+  </ul>
 </div>
   </div>
   <div class='method_details'>
@@ -183,6 +205,13 @@
     </p>
     <div class='docstring'>
   <p>A function to generate and link the error</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      How to generate an error and throw it
+    </h4>
+    <pre><code class='coffee'>throw ErrorReporter.generate(errCode) // WARNING : Do not add &quot;new&quot; after throw.</code></pre>
+  </div>
 </div>
 <div class='tags'>
   <h3>Parameters:</h3>
@@ -228,15 +257,42 @@
 <div class='tags'>
 </div>
   </div>
+  <div class='method_details'>
+    <p class='signature' id='toString-instance'>
+      - (String) <strong>toString</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Transforms the error message into a pretty text</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Test a string
+    </h4>
+    <pre><code class='coffee'>ErrorReporter.generate(0).toString() // =&gt; [Unknown Error] An unknown error has occurred |0|</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>String</tt>)
+      &mdash;
+      <span class='desc'>The error string required.</span>
+    </li>
+  </ul>
+</div>
+  </div>
 </div>
     </div>
     <div id='footer'>
   Generated on
-  Sun Oct 14 2012 17:42:46 GMT+0000 (UTC)
+  Wed Oct 24 2012 19:43:54 GMT+0000 (UTC)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v1.4.2
-  (Node.js v0.6.12).
+  v1.5.1
+  (Node.js v0.6.16).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
   &#10034;

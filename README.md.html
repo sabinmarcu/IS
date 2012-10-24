@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset='UTF-8'>
-  <title>ISF Documentation</title>
+  <title>&#39;ISF Documentation&#39;</title>
   <link rel='stylesheet' href='assets/codo.css' type='text/css'>
   <script src='assets/codo.js'></script>
   <script src='assets/search_data.js'></script>
@@ -11,6 +11,8 @@
     <div id='base' data-path=''></div>
 <div id='header'>
   <div id='menu'>
+    <a href='README.md.html' title='Codo'>Codo</a>
+    &raquo;
     <a href='class_index.html' title='Index'>Index</a>
     &raquo;
     <span class='title'>README.md</span>
@@ -116,16 +118,18 @@
         <h1>IS Framework <a href="http://travis-ci.org/sabinmarcu/IS"><img src="https://secure.travis-ci.org/sabinmarcu/is.png" alt="BUILD STATUS"></a></h1><p>The pourpose of this framework is to make object handling and mixins much more easier to work with in CoffeeScript / JavaScript</p><p>The whole application is wrapped in a Node.JS application that handles specs, browser testing, compiling with Stitch, and a few others.</p><h2>Documentation</h2><p>If you want to see the documentation, you can head over to <a href="http://sabinmarcu.github.com/IS">GitHub&#39;s pages</a> and look through. You can try and connect the code to the documentation, after all, it&#39;s generated from the source code itself</p><h2>The Node.JS application</h2><p>Has a command.js wrapper, so it is very easy to use.</p><pre><code>coffee boot
 coffee boot -s localhost -p 9323
 coffee boot -c ../project/src/IS.js
-coffee boot -c ../project/src/IS.js -w 0.5</code></pre><p>And so forth.</p><p>The first one sets up an http server on preset variables that compiles the project and feeds the <code>application.js</code> for you to handle in the console window of the browser (browser testing)</p><p>The second one sets up a server on <code>localhost:9323</code>, just like the previous one (except different variables)</p><p>The third one compiles the framework to the file hinted in the argument.</p><p>The forth one adds a watch (basically, a timer function), so that every <code>0.5 seconds</code> it compiles the code to the path specified.</p><h2>The framework</h2><h1>@TODO</h1>
+coffee boot -c ../project/src/IS.js -w 0.5</code></pre><p>And so forth.</p><p>The first one sets up an http server on preset variables that compiles the project and feeds the <code>application.js</code> for you to handle in the console window of the browser (browser testing)</p><p>The second one sets up a server on <code>localhost:9323</code>, just like the previous one (except different variables)</p><p>The third one compiles the framework to the file hinted in the argument.</p><p>The forth one adds a watch (basically, a timer function), so that every <code>0.5 seconds</code> it compiles the code to the path specified.</p><h2>The framework</h2>
+<h1>@TODO</h1>
+
       </div>
     </div>
     <div id='footer'>
   Generated on
-  Sun Oct 14 2012 17:42:46 GMT+0000 (UTC)
+  Wed Oct 24 2012 19:43:54 GMT+0000 (UTC)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
-  v1.4.2
-  (Node.js v0.6.12).
+  v1.5.1
+  (Node.js v0.6.16).
   &#10034;
   Press Ctrl-h to see the keyboard shortcuts
   &#10034;
