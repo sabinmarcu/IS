@@ -8,6 +8,8 @@ clone = (obj) ->
 		else o[k] = v
 	return o
 
+$ = (what) -> $[what] or null
+
 # Barebone Object that is to be augmented with modules 
 # @author Sabin Marcu
 # @version v0.1

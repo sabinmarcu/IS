@@ -1,6 +1,9 @@
-IS = require "../IS"
-obj = IS.Object
-obj.extend IS.Modules.ORM()
+IS   = require "../IS"
+obj  = IS.Object
+chai = require "chai"
+obj.extend IS.Modules.ORM
+
+do chai.should
 
 _count = (json) ->
 	nr = 0
@@ -9,30 +12,23 @@ _count = (json) ->
 
 describe "ORM Testing", ->
 
-	beforeEach ->
-		@addMatchers 
-			toHaveProperty: (prop) ->
-			  	return true for k, v of @actual when k == prop
-			  	return false
-
 	it "Should create the right reccords", ->
 		o = obj.clone()
 
 		o.create()
-		(expect _count o._reccords).toEqual 1
+		( _count o._reccords ).should.equal 1
 		n = o.create("with-id")
-		(expect _count o._reccords).toEqual 2
-		(expect _count o._symlinks)
-		(expect n).toEqual o.get("with-id")
+		( _count o._reccords ).should.equal 2
+		n.should.equal o.get("with-id")
 
 	it "Should create base props properly", ->
 		o = obj.clone()
 
 		o.addProp "baseProp"
-		(expect o._props).toContain "baseProp"
+		o._props.should.contain "baseProp"
 
 		x = o.reuse()
-		(expect x).toHaveProperty "baseProp"
+		x.should.have.property "baseProp"
 
 	it "Should update props on the fly", ->
 		o = obj.clone()
@@ -41,30 +37,29 @@ describe "ORM Testing", ->
 
 		a = o.reuse()
 		b = o.reuse()
-		(expect a).toHaveProperty "baseProp"
-		(expect b).toHaveProperty "baseProp"
+		a.should.have.property "baseProp"
+		b.should.have.property "baseProp"
 
 		o.addProp "afterProp"
 
-		(expect a).toHaveProperty "afterProp"
-		(expect b).toHaveProperty "afterProp"
+		a.should.have.property "afterProp"
+		b.should.have.property "afterProp"
 
 
 	it "Should reuse properly", ->
 		o = obj.clone()
 
 		o.reuse()
-		(expect _count o._reccords).toEqual 1
+		( _count o._reccords ).should.equal 1
 
-		x = o.reuse "with-id" 
-		(expect x).toEqual o.get "with-id"
-		(expect x).toEqual o.reuse "with-id"
-		(expect x._id).toBe "with-id"
+		x = o.reuse "with-id"
+		x.should.equal o.get "with-id"
+		x.should.equal o.reuse "with-id"
+		x._id.should.equal "with-id"
 
-		y = o.reuse "with-data", {"data": "new"} 
-		(expect y::).toEqual x::
-		(expect y._id).toBe "with-data"
-		(expect y.data).toBe "new"
+		y = o.reuse "with-data", {"data": "new"}
+		y._id.should.equal "with-data"
+		y.data.should.equal "new"
 
 	it "Should get by object query properly", ->
 		o = obj.clone()
@@ -72,14 +67,14 @@ describe "ORM Testing", ->
 		o.addProp("queryprop1")
 		o.addProp("queryprop2")
 
-		a = o.reuse();
+		a = o.reuse()
 		a.queryprop1.set "app"
 		a.queryprop2.set "app2"
-		b = o.reuse();
+		b = o.reuse()
 		b.queryprop1.set "progr"
 		b.queryprop2.set "stuff2"
 
-		(expect o.get { queryprop1: "app"}).toBe a
+		( o.get { queryprop1: "app"} ).should.equal a
 
 	it "Should retrieve multiple objects on object query", ->
 		o = obj.clone()
@@ -94,10 +89,10 @@ describe "ORM Testing", ->
 		b.prop.set false
 		c.prop.set true
 
-		(expect (o.get prop:true).length).toBe 2
-		(expect o.get prop:true).toContain a
-		(expect o.get prop:true).not.toContain b
-		(expect o.get prop:true).toContain c
+		( o.get prop:true ).length.should.equal 2
+		( o.get prop:true ).should.contain a
+		( o.get prop:true ).should.not.contain b
+		( o.get prop:true ).should.contain c
 
 	it "Should retrieve an object on object query with multiple ", ->
 		o = obj.clone()
@@ -117,7 +112,7 @@ describe "ORM Testing", ->
 		c.prop2.set 3
 
 		results = o.get prop: true, prop2: 2
-		(expect results).toBe a
+		results.should.equal a
 
 	it "Should retrieve objects with modifier matchers", ->
 		o = obj.clone()
@@ -133,11 +128,11 @@ describe "ORM Testing", ->
 		b.prop.set 5
 		c.prop.set 8
 
-		(expect o.get prop: {"$gt": 5}).toBe c
-		(expect o.get prop: {"$lt": 5}).toBe a
-		(expect o.get prop: {"$gte": 5}).toContain c
-		(expect o.get prop: {"$gte": 5}).toContain b		
-		(expect o.get prop: {"$gt": 3, "$lt": 8}).toBe b
+		( o.get prop: {"$gt": 5} ).should.equal c
+		( o.get prop: {"$lt": 5} ).should.equal a
+		( o.get prop: {"$gte": 5} ).should.contain c
+		( o.get prop: {"$gte": 5} ).should.contain b
+		( o.get prop: {"$gt": 3, "$lt": 8} ).should.equal b
 
 		a.prop2.add 1
 		a.prop2.add 4
@@ -152,8 +147,8 @@ describe "ORM Testing", ->
 		c.prop2.add 3
 
 		results = o.get prop2: {"$contains": 1}
-		(expect results).toContain a
-		(expect results).toContain c
+		results.should.contain a
+		results.should.contain c
 
 	it "Should retrieve items between two delimiters", ->
 		o = obj.clone()
@@ -171,5 +166,5 @@ describe "ORM Testing", ->
 		c.prop.set 3
 		d.prop.set 4
 
-		(expect _count o.get prop: {"$gt": 1, "$lt": 4}).toBe 2
-		(expect o.get prop: {"$gt": 2, "$lt": 4}).toBe c
+		( _count o.get prop: {"$gt": 1, "$lt": 4} ).should.equal 2
+		( o.get prop: {"$gt": 2, "$lt": 4} ).should.equal c

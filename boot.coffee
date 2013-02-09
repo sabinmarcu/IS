@@ -7,6 +7,7 @@ fs           = require "fs"
 pak = stitch.createPackage
 	paths: [
 		__dirname + "/src"
+		__dirname + "/node_modules/async/lib"
 	]
 	dependencies: [
 		__dirname + "/bootstraps/uuid.js"
@@ -60,7 +61,7 @@ class Bootstrap
 
 class Walker
 	@generateOutput: ->
-		output = "require 'Object'\n"
+		output = "require 'Object'\nrequire 'async'\n"
 		output += "IS =\n"
 		output += @indent @files, 1, ""
 		output += "\nwindow?.IS = IS\nmodule?.exports = IS\nroot?.IS = IS"

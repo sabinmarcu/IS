@@ -1,13 +1,14 @@
-IS = require "./IS"
-obj = IS.Object
+IS     = require "./IS"
+chai   = require "chai"
+obj    = IS.Object
+
+do chai.should
 
 describe "Barebone Object", ->
 
-	it "Should clone properly", ->
+	it "should clone properly", ->
 
 		newobj = obj.clone()
-
-		(expect newobj::).toEqual obj::
 
 		newobj.extend
 			"Chestie": "Naspa"
@@ -19,14 +20,14 @@ describe "Barebone Object", ->
 			]
 		inst = new newobj
 
-		(expect newobj.Chestie).toBe "Naspa"
-		(expect inst.potato).toBeDefined()
-		(expect newobj.potato).not.toBeDefined()
-		(expect inst.potato).toContain "barabula"
-		(expect inst.potato).not.toNotContain "cartof"
-		(expect inst.potato).toContain "chestie": "naspa"
-		(expect obj.Chestie).not.toBeDefined()
-		(expect (new obj).potato).not.toBeDefined()
+		newobj.Chestie.should.equal "Naspa"
+		inst.should.have.property("potato")
+		newobj.should.not.have.property("potato")
+		inst.potato.should.contain "barabula"
+		inst.potato.should.contain "cartof"
+		inst.potato.should.have.deep.property "[0].chestie", "naspa"
+		obj.should.not.have.property("Chestie")
+		(new obj).should.not.have.property("potato")
 
 	it "Should clone other objects properly", ->
 
@@ -36,9 +37,9 @@ describe "Barebone Object", ->
 		newobject = obj.clone object
 		newobject.prop = "Irina"
 
-		(expect object.prop).toBe "Sabin"
-		(expect newobject.prop).toBe "Irina"
-		(expect object.prop).not.toEqual newobject.prop
+		object.prop.should.equal "Sabin"
+		newobject.prop.should.equal "Irina"
+		object.prop.should.not.equal newobject.prop
 
 	it "Should Extend and Include properly", ->
 
@@ -52,11 +53,11 @@ describe "Barebone Object", ->
 			@classprop1: "Mixin Object"
 			instprop2: -> "Mixin Instance"
 
-		(expect Primitive.classprop1).toBe "Class Prop Primitive"
-		(expect Primitive.prototype.instprop2()).toBe "Instance Primitive"
+		Primitive.classprop1.should.equal "Class Prop Primitive"
+		Primitive.prototype.instprop2().should.equal "Instance Primitive"
 
-		(expect Mixin.classprop1).toBe "Mixin Object"
-		(expect Mixin::instprop2()).toBe "Mixin Instance"
+		Mixin.classprop1.should.equal "Mixin Object"
+		Mixin::instprop2().should.equal "Mixin Instance"
 	
 	it "Should Extend and Include properly", ->
 
@@ -73,14 +74,15 @@ describe "Barebone Object", ->
 		Primitive.extend Mixin
 		Primitive.include Mixin::
 
-		(expect Primitive.classprop1).toBe "Mixin Object"
-		(expect Primitive::instprop2()).toBe "Mixin Instance"
+		Primitive.classprop1.should.equal "Mixin Object"
+		Primitive::instprop2().should.equal "Mixin Instance"
 
 		Primitive.classprop2 = -> @::instprop1
 
-		(expect Primitive.classprop2()).toBe "Instance Prop Primitive"
+		Primitive.classprop2().should.equal "Instance Prop Primitive"
 
 		Primitive.classprop2 = -> @super
 
-		(expect Primitive.classprop2().classprop1).toBe "Class Prop Primitive"
+		Primitive.classprop2().classprop1.should.equal "Class Prop Primitive"
+
 

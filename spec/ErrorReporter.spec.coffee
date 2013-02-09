@@ -1,5 +1,8 @@
 IS = require "./IS"
-obj = IS.Object.clone()
+chai = require "chai"
+obj = do IS.Object.clone
+
+do chai.should
 
 describe "Error Reporter", ->
 
@@ -7,36 +10,33 @@ describe "Error Reporter", ->
 		class item extends obj
 			@extend IS.ErrorReporter
 
-		(expect typeof item.generate).toBe "function"
+		( typeof item.generate ).should.equal "function"
 
 	it "Should get the properties right", ->
 		class item2 extends obj
 
-			@errorGroupMap : [5, 6, 7]
-			@errorGroups   : ["Chestie", "Naspa"]
-			@errorMessages : ["There is no space", "No more jizz", "Need more potassium", "Need Viagra"]
+			@errors:
+				"Chestie": ["There is no space", "No more jizz"]
+				"Naspa": ["Need more potassium", "Need Viagra"]
 
 			@extend IS.ErrorReporter
 
+		item2._indices.should.contain "An unknown error has occurred"
+		item2._indices.should.contain "There is no space"
+		item2._indices.should.contain "No more jizz"
+		item2._indices.should.contain "Need more potassium"
+		item2._indices.should.contain "Need Viagra"
 
-		(expect item2._errorMessages).toContain "There is no space"
-		(expect item2._errorMessages).toContain "No more jizz"
-		(expect item2._errorMessages).toContain "Need more potassium"
-		(expect item2._errorMessages).toContain "Need Viagra"
-
-		(expect item2._errorGroupMap).toContain 5
-		(expect item2._errorGroupMap).toContain 6
-		(expect item2._errorGroupMap).toContain 7
-
-		(expect item2._errorGroups).toContain "Chestie"
-		(expect item2._errorGroups).toContain "Naspa"
+		item2._errors.should.have.property "Unknown Error"
+		item2._errors.should.have.property "Chestie"
+		item2._errors.should.have.property "Naspa"
 
 	it "Should generate errors properly", ->
 		class item2 extends obj
 
-			@errorGroupMap : [1, 1, 1, 2, 2]
-			@errorGroups   : [ "Penis", "Vagina" ]
-			@errorMessages : [ "No more Viagra", "Need potassium", "No banana for you", "Need a dildo", "No more wine" ]
+			@errors:
+				"Penis": ["No more Viagra", "Need potassium", "No banana for you"]
+				"Vagina": ["Need a dildo", "No more wine"]
 
 			@extend IS.ErrorReporter
 
@@ -47,28 +47,29 @@ describe "Error Reporter", ->
 		error4 = item2.generate 4
 		error5 = item2.generate 5
 
-		(expect error0.name).toBe "Unknown Error"
-		(expect error1.name).toBe "Penis"
-		(expect error2.name).toBe "Penis"
-		(expect error3.name).toBe "Penis"
-		(expect error4.name).toBe "Vagina"
-		(expect error5.name).toBe "Vagina"
+		error0.name.should.equal "Unknown Error"
+		error1.name.should.equal "Penis"
+		error2.name.should.equal "Penis"
+		error3.name.should.equal "Penis"
+		error4.name.should.equal "Vagina"
+		error5.name.should.equal "Vagina"
 
-		(expect error0.message).toBe "An unknown error has occurred"
-		(expect error1.message).toBe "No more Viagra"
-		(expect error2.message).toBe "Need potassium"
-		(expect error3.message).toBe "No banana for you"
-		(expect error4.message).toBe "Need a dildo"
-		(expect error5.message).toBe "No more wine"
+		error0.message.should.equal "An unknown error has occurred"
+		error1.message.should.equal "No more Viagra"
+		error2.message.should.equal "Need potassium"
+		error3.message.should.equal "No banana for you"
+		error4.message.should.equal "Need a dildo"
+		error5.message.should.equal "No more wine"
 
-		(expect ( item2.generate 3, "Stuff is fucked up!" ).message).toBe "No banana for you - Extra Data : Stuff is fucked up!"
+		( item2.generate 3, "Stuff is fucked up!" ).message.should.equal "No banana for you - Extra Data : Stuff is fucked up!"
 
 	it "Should return correct texts", ->
 		class item2 extends obj
 
-			@errorGroupMap : [1, 1, 1, 2, 2]
-			@errorGroups   : [ "Penis", "Vagina" ]
-			@errorMessages : [ "No more Viagra", "Need potassium", "No banana for you", "Need a dildo", "No more wine" ]
+			@errors:
+				"Penis": ["No more Viagra", "Need potassium", "No banana for you"]
+				"Vagina": ["Need a dildo", "No more wine"]
+
 
 			@extend IS.ErrorReporter
 
@@ -80,9 +81,9 @@ describe "Error Reporter", ->
 		error5 = item2.generate 5
 
 
-		(expect do error0.toString).toBe "[Unknown Error] An unknown error has occurred |0|"
-		(expect do error1.toString).toBe "[Penis] No more Viagra |1|"
-		(expect do error2.toString).toBe "[Penis] Need potassium |2|"
-		(expect do error3.toString).toBe "[Penis] No banana for you |3|"
-		(expect do error4.toString).toBe "[Vagina] Need a dildo |4|"
-		(expect do error5.toString).toBe "[Vagina] No more wine |5|"
+		( do error0.toString ).should.equal "[Unknown Error] An unknown error has occurred |0|"
+		( do error1.toString ).should.equal "[Penis] No more Viagra |1|"
+		( do error2.toString ).should.equal "[Penis] Need potassium |2|"
+		( do error3.toString ).should.equal "[Penis] No banana for you |3|"
+		( do error4.toString ).should.equal "[Vagina] Need a dildo |4|"
+		( do error5.toString ).should.equal "[Vagina] No more wine |5|"

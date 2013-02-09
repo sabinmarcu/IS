@@ -1,24 +1,28 @@
 {
-	"name" :  "isf",
-	"version" :  "0.1.8",
-	"author" :  "Sabin Marcu <sabinmarcu@gmail.com>",
-	"dependencies" :  {
-		"stitchw" :  ">=0.3.4",
-		"coffee-script" :  ">=1.2.0",
-		"jasmine-node" :  "*",
-		"express" :  ">=2.5.0",
-		"commander" :  "*",
-		"codo" :  "*"
-	},
-	"devDependencies" :  {
-		"mongoose" :  "*",
-		"cdir" :  "*"
-	},
-	"scripts" :  {
-		"test" :  "npm run-script compile && npm run-script run-tests",
-		"compile" :  "node ./server.js --compile lib/application.js",
-		"run-tests" :  "node ./node_modules/.bin/jasmine-node --coffee --noColor ./spec",
-		"run_docs" :  "./node_modules/.bin/codo --title 'ISF Documentation' -o docs"
-	},
-	"main" :  "lib/application.js"
+  "name": "isf",
+  "version": "0.1.8",
+  "author": "Sabin Marcu <sabinmarcu@gmail.com>",
+  "dependencies": {
+    "stitchw": ">=0.3.4",
+    "coffee-script": ">=1.2.0",
+    "express": ">=2.5.0",
+    "commander": "*",
+    "codo": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "grunt": "~0.4.0rc7",
+    "grunt-simple-mocha": "~0.3.2",
+    "grunt-contrib-uglify": "~0.1.0"
+  },
+  "scripts": {
+    "test": "npm run-script compile && npm run-script run-tests",
+    "compile": "npm run-script compile-sources && npm run-script minify-sources",
+    "compile-sources": "node ./server.js --compile lib/isf.js",
+    "minify-sources": "node ./node_modules/.bin/uglifyjs lib/isf.js -o lib/isf.min.js",
+    "run-tests": "node ./node_modules/.bin/mocha --compilers coffee:coffee-script ./spec/*",
+    "run_docs": "./node_modules/.bin/codo --title 'ISF Documentation' -o docs"
+  },
+  "main": "lib/application.js"
 }

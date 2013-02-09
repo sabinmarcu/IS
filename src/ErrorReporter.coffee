@@ -2,14 +2,12 @@
 class ErrorReporter
 
 	# A few base variables
-	@_errorGroupMap		: [ 0 ]
-	@_errorGroups       : [ "Unknown Error" ]
-	@_errorMessages     : [	"An unknown error has occurred" ]
+	@_errors: {"Unknown Error": [ "An unknown error has occurred" ]}
+	@_indices: [
+		@_errors["Unknown Error"][0]
+	]
+	@_groups: [ "Unknown Error" ]
 
-	# Initializing the future arrays with blank arrays for lazy adding.
-	@errorGroupMap : []
-	@errorGroups   : []
-	@errorMessages : []
 
 	# A function that would format the message of a previous error that needs to be included into the current one :)
 	# @param [Error] error The error to be formatted
@@ -22,22 +20,29 @@ class ErrorReporter
 	# @return [ErrorReporter] A new ErrorReporter instance initialized with the data sent.
 	# @example How to generate an error and throw it
 	#   throw ErrorReporter.generate(errCode) // WARNING : Do not add "new" after throw.
-	@generate : (errorCode, extra = null) -> return (new @).generate errorCode, @, extra
+	@generate : (errorCode, extra = null) -> return (new @).generate errorCode, extra
 
 	# This function will be called when extending the item. This way, we can compile the list of errors on site.
 	# @private
 	@extended : ->
-		@_errorGroupMap.push item for item in @super.errorGroupMap if @super? and @super.errorGroupMap?
-		@_errorGroups.push item for item in @super.errorGroups if @super? and @super.errorGroups?
-		@_errorMessages.push item for item in @super.errorMessages if @super? and @super.errorMessages?
+		for group, errors of @errors
+			@_errors[group] = errors
+			@_groups.push group
+			for error, key in errors
+				@_indices.push @_errors[group][key]
+		@::_ = @
+		delete @errors
 		@include ErrorReporter::
 
 	# Generates the error based on factory items
-	generate: (errCode, ER, extra = null) ->
-		if not ER._errorGroupMap[errCode]? then @name = ER._errorGroups[0]; @message = ER._errorMessages[0]
-		else @name = ER._errorGroups[ER._errorGroupMap[errCode]]; @message = ER._errorMessages[errCode]
-		if extra? and extra then @message += (" - Extra Data : #{extra}" if extra? and extra)
-		@errCode = errCode
+	generate: (@errCode, extra = null) ->
+		if not @_._indices[@errCode] then @name = @_._groups[0]; @message = @_._errors[@_._groups[0]][0]
+		else
+			@message = @_._indices[@errCode]
+			if extra then @message += " - Extra Data : #{extra}"
+			for group, errors of @_._errors when @message in errors
+				@name = group
+				break
 		@
 		
 	# Transforms the error message into a pretty text

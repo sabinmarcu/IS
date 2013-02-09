@@ -1,5 +1,8 @@
-IS = require "./IS"
-obj = IS.Variable
+IS     = require "./IS"
+chai   = require "chai"
+obj    = IS.Variable
+
+do chai.should
 
 _count = (json) ->
 	nr = 0
@@ -10,10 +13,10 @@ describe "Variable Object", ->
 
 	it "Should spawn properly", ->
 		n = obj.clone()
-		(expect n).toEqual n
+		n.should.equal n
 		
 		x = n.spawn()
-		(expect x).toEqual n.spawn()
+		x.should.be.an.instanceof n
 
 	it "Should have different values for different variables",  ->
 		n = obj.clone()
@@ -22,6 +25,6 @@ describe "Variable Object", ->
 
 		y.set true
 		z.set false
-		(expect do y.get).not.toEqual do z.get
-		(expect do y.get).toBe true
-		(expect do z.get).toBe false
+		(do y.get).should.not.equal do z.get
+		(do y.get).should.equal true
+		(do z.get).should.equal false

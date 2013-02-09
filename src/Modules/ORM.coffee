@@ -165,19 +165,7 @@ class Modules.ORM
 		}
 
 	
-module.exports = (addon) ->
-	if IS.Addons? and IS.Addons.ORM? and IS.Addons.ORM[addon]
-		x = (require "Object").clone Modules.ORM
-		(require "Object").extend IS.Addons.ORM[addon], x
-	else if addon?
-		test = [ "reuse", "addProp", "removeProp", "get", "create", "delete" ]
-		valid = true
-		valid = false for item in test when not addon[item]?
-		if valid
-			x = (require "Object").clone Modules.ORM::
-			(require "Object").extend addon, x
-	if x? then return x
-	else return Modules.ORM::
+module.exports = Modules.ORM::
  
 	
 
