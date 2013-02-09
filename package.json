@@ -12,9 +12,7 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
-    "grunt": "~0.4.0rc7",
-    "grunt-simple-mocha": "~0.3.2",
-    "grunt-contrib-uglify": "~0.1.0"
+	"uglifyjs": "*"
   },
   "scripts": {
     "test": "npm run-script compile && npm run-script run-tests",
