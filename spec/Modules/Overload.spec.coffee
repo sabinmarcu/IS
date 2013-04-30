@@ -31,7 +31,6 @@ describe "Function Overload Module", ->
 
 		class object extends obj
 
-			@include IS.Modules.Overload
 			@extend IS.Modules.Overload
 
 			@get: @overload
@@ -50,8 +49,46 @@ describe "Function Overload Module", ->
 					if:	"arg1": (arg) -> typeof arg is "array"
 					then: -> "array"
 
-			( object.get "some string" ).should.equal "string"
-			( object.get ["Some", "Array", "Elements"] ).should.equal "array"
-			( object.get {"username": "Bula"} ).should.equal "Bula"
-			( object.get {"username": "Bula"}, 3).should.equal "BulaBulaBula"
+		( object.get "some string" ).should.equal "string"
+		( object.get ["Some", "Array", "Elements"] ).should.equal "array"
+		( object.get {"username": "Bula"} ).should.equal "Bula"
+		( object.get {"username": "Bula"}, 3).should.equal "BulaBulaBula"
 
+
+	it "Should handle complex overlods on an instance", ->
+
+		class object extends obj
+
+			@extend IS.Modules.Overload
+			@string = "Chestie"
+
+			constructor: -> @string = "Ceva Naspa"
+			get: @overload
+				string:
+					if: "arg1": (arg) -> arg.substr?
+					then: -> "string"
+				object:
+					if: "arg1": (arg) -> arg.username?
+					then: (arg) -> arg.username
+				object_plus:
+					if:
+						args: 2
+						"arg1": (arg) -> arg.username?
+					then: (arg, many) -> Array(many + 1).join arg.username
+				nothing:
+					if:
+						args: 0
+					then: -> @string
+				array:
+					if:	"arg1": (arg) -> typeof arg is "array"
+					then: -> "array"
+
+		object = new object() 
+		( object.get "some string" ).should.equal "string"
+		( object.get ["Some", "Array", "Elements"] ).should.equal "array"
+		( object.get {"username": "Bula"} ).should.equal "Bula"
+		( object.get {"username": "Bula"}, 3).should.equal "BulaBulaBula"
+		( object.get() ).should.equal "Ceva Naspa"
+		( object.get() ).should.not.equal "Chestie"
+		object.string = "Cool"
+		( object.get() ).should.equal "Cool"

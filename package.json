@@ -1,6 +1,6 @@
 {
   "name": "isf",
-  "version": "0.1.8",
+  "version": "0.1.11",
   "author": "Sabin Marcu <sabinmarcu@gmail.com>",
   "dependencies": {
     "stitchw": ">=0.3.4",
@@ -23,5 +23,5 @@
     "run-tests": "node ./node_modules/.bin/mocha --compilers coffee:coffee-script ./spec/*",
     "run_docs": "./node_modules/.bin/codo --title 'ISF Documentation' -o docs"
   },
-  "main": "lib/application.js"
+  "main": "lib/isf.min.js"
 }

@@ -14,9 +14,7 @@ class Include
 	# @param $set The overload set
 	overload: (sets) ->
 		helper = new Modules.Overload(sets, @)
-		@proxy (args...) ->
-			helper.verifyAll.apply helper, args
-		, @
+		(args...) -> helper.parent = @; helper.verifyAll.apply helper, args
 
 # An overload engine, capable of replacing a function with a handler that decides on which function to use based on the arguments (and sets given)
 class Modules.Overload
