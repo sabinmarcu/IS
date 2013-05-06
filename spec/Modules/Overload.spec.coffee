@@ -82,6 +82,13 @@ describe "Function Overload Module", ->
 				array:
 					if:	"arg1": (arg) -> typeof arg is "array"
 					then: -> "array"
+			set: IS.Modules.Overload.overload
+				string:
+					if: "arg1": (arg) -> arg.substr?
+					then: -> "string"
+				nothing:
+					if: args: 0
+					then: -> "nothing"
 
 		object = new object() 
 		( object.get "some string" ).should.equal "string"
@@ -92,3 +99,5 @@ describe "Function Overload Module", ->
 		( object.get() ).should.not.equal "Chestie"
 		object.string = "Cool"
 		( object.get() ).should.equal "Cool"
+		( object.set("something") ).should.equal "string"
+		( object.set() ).should.equal "nothing"
