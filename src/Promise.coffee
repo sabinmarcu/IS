@@ -11,10 +11,20 @@ class Promise
 	resolve: (args...) ->
 		callback = @callbacks.shift()
 		if callback and callback.ok then callback.ok.apply @, args
+		else
+			time = setTimeout =>
+				clearTimeout time
+				@resolve.apply @, args
+			, 50
 		@
 	reject: (args...) ->
 		callback = @callbacks.shift()
 		if callback and callback.error then callback.error.apply @, args
+		else
+			time = setTimeout =>
+				clearTimeout time
+				@reject.apply @, args
+			, 50
 		@
 	progress: (args...) ->
 		callback = @callbacks[0]
