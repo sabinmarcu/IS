@@ -48,10 +48,28 @@ class Obiect
 			@[property] arguments
 		, @)
 
+	@echo: (args...) ->
+		_d = new Date
+		owner = "<not supported>"
+		if @__proto__? then owner = @__proto__.constructor.name
+		prefix = "[#{do _d.getHours}:#{do _d.getMinutes}:#{do _d.getSeconds}][#{@name or owner}]"
+		if args[0] is "" then args[0] = prefix
+		else args[0] = "#{prefix} #{args[0]}"
+		console.log args
+		@
+
+	@log: (args...) ->
+		if IS?.isDev or window.isDev or root?.isDev or isDev
+			args.unshift ""
+			@echo.apply @, args
+		@
+
 	extended = ->
 	included = ->
 
 	@include
 		proxy: @proxy
+		log: @log
+		echo: @echo
 
 module.exports = Obiect

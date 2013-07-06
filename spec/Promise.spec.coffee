@@ -86,7 +86,7 @@ describe "Promise", ->
 			test(2).then(test, reject).then(test, reject).then(( -> ), (error, value) -> error.message.should.equal "It works"; value.should.equal 2; done())
 		)
 
-	it "Should progress nicely", ->
+	it "Should progress nicely", (done)->
 		op = (val) ->
 			x = new Promise(@)
 			x.progress 1
@@ -104,7 +104,24 @@ describe "Promise", ->
 		op3 = op
 
 		op1(4).then(op2, null, prog).then(op3, null, prog).then( (result)->
-			result.should.equal 7			
-			number.should.equal 6
+			result.should.equal 7	
+			number.should.equal 5
 			done()
 		)
+	it "Should work with faster resolving" ,(done)->
+		op = (val) ->
+			x = new Promise(@)
+			val.should.equal value + tick
+			tick++
+			x.resolve val+1
+			x
+
+		op1 = op2 = op3 = op
+		tick = 0; value = 1
+		prom = op1(value)
+		setTimeout(-> 
+			prom.then(op2).then(op3).then((val)->
+				val.should.equal 4
+				done()
+			)
+		, 200)
