@@ -1,5 +1,5 @@
 IS   = require "../IS"
-obj  = IS.Object
+obj  = IS.Object.clone()
 chai = require "chai"
 obj.extend IS.Modules.ORM
 

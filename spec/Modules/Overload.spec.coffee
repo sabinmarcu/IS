@@ -1,6 +1,6 @@
 IS = require "../IS"
 chai = require "chai"
-obj = IS.Object
+obj = IS.Object.clone()
 
 do chai.should
 
