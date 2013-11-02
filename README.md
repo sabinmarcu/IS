@@ -1,5 +1,8 @@
-# IS Framework [![BUILD STATUS](https://secure.travis-ci.org/sabinmarcu/IS.png)](http://travis-ci.org/sabinmarcu/IS) 
-The pourpose of this framework is to make object handling and mixins much more easier to work with in CoffeeScript / JavaScript
+# IS Framework 
+
+[![BUILD STATUS](https://secure.travis-ci.org/sabinmarcu/IS.png)](http://travis-ci.org/sabinmarcu/IS) [![NPM version](https://badge.fury.io/js/isf.png)](http://badge.fury.io/js/isf)
+
+The purpose of this framework is to make object handling and mixins much more easier to work with in CoffeeScript / JavaScript
 
 The whole application is wrapped in a Node.JS application that handles specs, browser testing, compiling with Stitch, and a few others.
 
