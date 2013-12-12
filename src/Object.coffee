@@ -50,7 +50,7 @@ class Obiect
 
 	@echo: (args...) ->
 		_d = new Date
-		owner = "<not supported>"
+		owner = "<owner not supported>"
 		if @__proto__? then owner = @__proto__.constructor.name
 		prefix = "[#{do _d.getHours}:#{do _d.getMinutes}:#{do _d.getSeconds}][#{@name or owner}]"
 		if args[0] is "" then args[0] = prefix
@@ -59,7 +59,7 @@ class Obiect
 		@
 
 	@log: (args...) ->
-		if IS?.isDev or window.isDev or root?.isDev or isDev
+		if (IS? and IS.isDev) or (window? and window.isDev) or (root? and root.isDev) or isDev
 			args.unshift ""
 			@echo.apply @, args
 		@

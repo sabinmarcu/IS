@@ -1,4 +1,7 @@
-_root = root or window
+_root = null
+if root? then _root = root
+else if window? then _root = window
+else _root = {}
 
 # A class that handles the creation of properties (getters / setters) for any other given class
 class DefineProperty
