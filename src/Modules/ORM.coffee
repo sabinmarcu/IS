@@ -157,7 +157,6 @@ class Modules.ORM
 				@fn = args._fn
 				valueSet[key] = value for key, value of args when (key not in @fn._excludes and (@constructFilter key, value) isnt false)
 				return @init.call(@, valueSet) if @init?
-				@[k] = v for k, v of valueSet
 
 			constructFilter: (key, value) -> true
 			remove: () ->
