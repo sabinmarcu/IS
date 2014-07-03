@@ -1,4 +1,4 @@
-IS   = require "../IS"
+IS   = require "../../lib/isf.js"
 obj  = IS.Object.clone()
 chai = require "chai"
 

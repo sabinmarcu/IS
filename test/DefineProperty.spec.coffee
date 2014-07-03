@@ -1,4 +1,4 @@
-IS   = require "./IS"
+IS   = require "./../lib/isf.js"
 chai = require "chai"
 DefineProperty = IS.DefineProperty
 Object = IS.Object.clone()
@@ -97,6 +97,3 @@ describe "DefineProperty", ->
 		NEW_NEW_OBJECT.sname = "Matt"
 
 		NEW_NEW_OBJECT.sname.should.equal "Matt"
-
-
-

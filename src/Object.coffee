@@ -1,4 +1,3 @@
-
 _excludes = ["included", "extended"]
 
 clone = (obj) ->

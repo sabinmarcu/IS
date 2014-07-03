@@ -16,12 +16,8 @@
 	"uglify-js": "*"
   },
   "scripts": {
-    "test": "npm run-script compile && npm run-script run-tests",
-    "compile": "npm run-script compile-sources && npm run-script minify-sources",
-    "compile-sources": "node ./server.js --compile lib/isf.js",
-    "minify-sources": "node ./node_modules/.bin/uglifyjs lib/isf.js -o lib/isf.min.js",
-    "run-tests": "node ./node_modules/.bin/mocha --compilers coffee:coffee-script ./spec/*",
-    "run_docs": "./node_modules/.bin/codo --title 'ISF Documentation' -o docs"
+    "test": "make test",
+    "start": "make"
   },
   "main": "lib/isf.min.js"
 }

@@ -1,4 +1,4 @@
-IS   = require "./IS"
+IS   = require "./../lib/isf.js"
 chai = require "chai"
 Enum = IS.Enum
 do chai.should

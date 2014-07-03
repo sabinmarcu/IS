@@ -109,3 +109,5 @@ else if program.specs then Bootstrap.specs()
 else Bootstrap.server()
 
 root._ISRES = false
+
+return 0
