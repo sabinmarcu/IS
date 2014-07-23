@@ -14,7 +14,7 @@ $ = (what) -> $[what] or null
 # @version v0.1
 class Obiect
 
-	@clone: (obj = @)-> debugger ;(Obiect.proxy Obiect.include, (Obiect.proxy Obiect.extend, ->)(obj))(obj::)
+	@clone: (obj = @)-> (Obiect.proxy Obiect.include, (Obiect.proxy Obiect.extend, ->)(obj))(obj::)
 
 	@extend: (obj, into = @) ->
 		obj = clone obj
@@ -58,7 +58,7 @@ class Obiect
 		@
 
 	@log: (args...) ->
-		if (IS? and IS.isDev) or (window? and window.isDev) or (root? and root.isDev) or isDev
+		if (IS? and IS.isDev) or (window? and window.isDev) or (root? and root.isDev) or isDev?
 			args.unshift ""
 			@echo.apply @, args
 		@
